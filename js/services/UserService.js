@@ -1,4 +1,4 @@
-app.service('UserService',function (config,$http,$rootScope,$q,$timeout) {
+app.service('UserService',function (config,$http) {
     var service = this,
         path = '/users/';
 
@@ -6,11 +6,14 @@ app.service('UserService',function (config,$http,$rootScope,$q,$timeout) {
         return config.endpointUri + path;
     }
     service.all = function() {
-       return $http.get(getUrl()).then(function(users) {
-           return users.data;
+       return $http.get(getUrl()).then(function(list) {
+           return list;
        });
     };
-    service.create = function (item) {
-        return $http.post(getUrl(), item);
+    service.update = function(obj) {
+        return $http.put(getUrl(), obj);
+    };
+    service.create = function (obj) {
+        return $http.post(getUrl(), obj);
     };
 });
