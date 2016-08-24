@@ -7,9 +7,15 @@ app.service('UserService',function (config,$http) {
     }
 
     service.all = function() {
-       return $http.get(getUrl()).then(function(list) {
-           return list.data;
-       });
+        return $http.get(getUrl()).then(function(list) {
+            return list.data;
+        });
+    };
+
+    service.getById = function(id) {
+        return $http.get(getUrl() + id).then(function(obj) {
+            return obj.data;
+        });
     };
 
     service.update = function(obj) {
